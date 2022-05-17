@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grp{
+            display: flex;
+        }
+        .grp>div{
+            border: 1px solid;
+            padding: 10px;
+            font-size: 20px;
+            margin: 10px;
+        }
+        #winner{
+            border: 2px soild green;
+            padding: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="winner"></div>
+    <div class="grp">
+        <div id="member-1"></div>
+        <div id="member-2"></div>
+        <div id="member-3"></div>
+    </div>
+    <button id="roll">ROLL THE DICE</button>
+</body>
+</html>
+
+<script>
+    var roll = document.querySelector("#roll").addEventListener("click", randomFun)
+
+    function randomFun(){
+        var x = Math.floor(Math.random()*6)+1
+        var y = Math.floor(Math.random()*6)+1
+        var z = Math.floor(Math.random()*6)+1
+
+        var first = document.querySelector("#member-1")
+        first.innerText = x
+        var second = document.querySelector("#member-2")
+        second.innerText = y
+        var third = document.querySelector("#member-3")
+        third.innerText = z
+        var max= -Infinity
+        var min = +Infinity
+        var arr = [x,y,z]
+        for(var i = 0; i<arr.length; i++){
+            if(arr[i]>max){
+                max = arr[i]
+            }
+            if(arr[i]<min){
+                min = arr[i]
+            }
+        }
+        console.log(max)
+        console.log(min)
+        var winner = document.querySelector("#winner")
+        winner.innerText = max
+        winner.style.color = "green"
+
+        if(+(first.innerText) > +(second.innerText) && +(first.innerText) > +(third.innerText)){
+            first.style.color = "green"
+        }
+        else if(+second.innerText > +(first.innerText) && +(second.innerText)> +(third.innerText)){
+            second.style.color = "green"
+        }
+        // window.location.reload()
+    }
+</script>
